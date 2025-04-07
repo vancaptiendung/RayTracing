@@ -1,0 +1,8 @@
+[
+{
+  "directory": "/home/dung-qin/Desktop/ray_tracing/build",
+  "command": "/usr/bin/g++   -g -o CMakeFiles/raytracing.dir/main.cpp.o -c /home/dung-qin/Desktop/ray_tracing/main.cpp",
+  "file": "/home/dung-qin/Desktop/ray_tracing/main.cpp",
+  "output": "CMakeFiles/raytracing.dir/main.cpp.o"
+}
+]
