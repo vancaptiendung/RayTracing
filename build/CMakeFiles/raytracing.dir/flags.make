@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/g++
 CXX_DEFINES = 
 
-CXX_INCLUDES = 
+CXX_INCLUDES = -I/home/dung-qin/Desktop/ray_tracing/./dependences/include/glm -I/home/dung-qin/Desktop/ray_tracing/./util
 
 CXX_FLAGS = -g
 
