@@ -5,7 +5,7 @@ project(raytracing)
 set(CXX_FILE main.cpp)
 set(UTIL_SOURCE)
 
-file(GLOB UTIL_SOURCE CONFIGURE_DEPEND "./util/")
+file(GLOB UTIL_SOURCE CONFIGURE_DEPEND "./util/src")
 
 list(APPEND CXX_FILE ${UTIL_SOURCE})
 
