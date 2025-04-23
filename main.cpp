@@ -35,9 +35,14 @@ int main() {
     glm::vec3 camera = glm::vec3(image_width/2, image_height/2, 900);
 
     //obj
-    hittable* Sphere1 = new sphere(glm::vec3(image_width/2, image_height/2,100), 50);
+    hittable* Sphere1 = new sphere(glm::vec3(image_width/2-100, image_height/2,70), 80, glm::vec4(255,255,0,255));
+    hittable* Sphere2 = new sphere(glm::vec3(image_width/2+100, image_height/2,50), 50, glm::vec4(0,255,0,255));
+    hittable* Surface1 = new surface(glm::vec3(0, image_height/2 + 50, 0), glm::vec3(0, 1, 0), glm::vec4(0,0,255,255));
+
     Objects Obj_ctr;
     Obj_ctr.add_object(Sphere1);
+    Obj_ctr.add_object(Sphere2);
+    Obj_ctr.add_object(Surface1);
 
     std::cout << "P3\n" << image_width << ' ' << image_height << "\n255\n";
 
@@ -50,8 +55,11 @@ int main() {
             //     out_pixel(color);
             // }
             // else{out_pixel(sky(glm::vec2(i,j)));}
-            if (Obj_ctr.ray_touch(ray, camera, 0, 1)){
-                out_pixel(glm::vec3(255,0,0));
+            glm::vec4 colorOut ;
+            float touch = Obj_ctr.ray_touch(ray, camera, 0, 1, &colorOut);
+            if (touch != NULL){
+                glm::vec3 color_handled = glm::vec3(colorOut.x, colorOut.y, colorOut.z);
+                out_pixel(color_handled);
             }
             else{out_pixel(sky(glm::vec2(i,j)));}
         }
