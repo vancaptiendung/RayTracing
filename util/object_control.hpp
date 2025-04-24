@@ -13,7 +13,7 @@ class Objects{
 public:
 
     void add_object(hittable* Obj){Object.insert(Object.end(), Obj);}
-    float ray_touch(glm::vec3 ray, glm::vec3 P, float t_min, float t_max, glm::vec4* color_output){
+    float ray_touch(glm::vec3 ray, glm::vec3 P, float t_min, float t_max, glm::vec4* color_output, Light_source source_light){
         Hit_object.clear();
         bool Hit = false;
         float t_return = t_max;
@@ -21,7 +21,7 @@ public:
         glm::vec4 colorReturn;
 
         for (auto obj:Object){
-            if (obj->Hit_check(ray, P, t_min, t_max, &t_touch, &colorReturn)){
+            if (obj->Hit_check(ray, P, t_min, t_max, &t_touch, &colorReturn, source_light)){
                 Hit_object.insert(Hit_object.end(), obj);
                 Hit = true;
                 //std::cout<<t_touch<<std::endl;

@@ -16,11 +16,6 @@ float touch_sphere(glm::vec3 center, glm::vec3 ray_check, float radius, glm::vec
     return 0;
 }
 
-glm::vec3 handle_reflection_sphere(glm::vec3 center, glm::vec3 touch_point){
-    int z = touch_point.z; 
-    return glm::vec3(z);
-}
-
 glm::vec3 sky(glm::vec2 coord){
     return glm::vec3(255-int(coord.y*255/1000),255-int(coord.y*255/800),255);
 }
@@ -34,15 +29,23 @@ int main() {
 
     glm::vec3 camera = glm::vec3(image_width/2, image_height/2, 900);
 
+    Lighting_parameter simple_light = {glm::vec3(0.01), glm::vec3(0.15), glm::vec3(0.5), 8};
+    Light_source Light1 = {
+        glm::vec3(10,10,10),
+        glm::vec3(0.1), glm::vec3(0.5), glm::vec3(0.5)
+    };
+
     //obj
-    hittable* Sphere1 = new sphere(glm::vec3(image_width/2-100, image_height/2,70), 80, glm::vec4(255,255,0,255));
-    hittable* Sphere2 = new sphere(glm::vec3(image_width/2+100, image_height/2,50), 50, glm::vec4(0,255,0,255));
-    hittable* Surface1 = new surface(glm::vec3(0, image_height/2 + 50, 0), glm::vec3(0, 1, 0), glm::vec4(0,0,255,255));
+    hittable* Sphere1 = new sphere(glm::vec3(image_width/2-100, image_height/2,70), 80, glm::vec4(1,1,0,1), simple_light);
+    hittable* Sphere2 = new sphere(glm::vec3(image_width/2+100, image_height/2,50), 50, glm::vec4(0,1,0,1), simple_light);
+    hittable* Surface1 = new surface(glm::vec3(0, image_height/2 - 30, 0), glm::vec3(0, -1, 0.5), glm::vec4(1), simple_light);
+    hittable* Sun = new sphere(Light1.coord, 20, glm::vec4(1), simple_light);
 
     Objects Obj_ctr;
     Obj_ctr.add_object(Sphere1);
     Obj_ctr.add_object(Sphere2);
     Obj_ctr.add_object(Surface1);
+    Obj_ctr.add_object(Sun);
 
     std::cout << "P3\n" << image_width << ' ' << image_height << "\n255\n";
 
@@ -56,9 +59,9 @@ int main() {
             // }
             // else{out_pixel(sky(glm::vec2(i,j)));}
             glm::vec4 colorOut ;
-            float touch = Obj_ctr.ray_touch(ray, camera, 0, 1, &colorOut);
+            float touch = Obj_ctr.ray_touch(ray, camera, 0, 1, &colorOut, Light1);
             if (touch != NULL){
-                glm::vec3 color_handled = glm::vec3(colorOut.x, colorOut.y, colorOut.z);
+                glm::vec3 color_handled = glm::vec3(int(255*colorOut.x), int(255*colorOut.y), int(255*colorOut.z));
                 out_pixel(color_handled);
             }
             else{out_pixel(sky(glm::vec2(i,j)));}

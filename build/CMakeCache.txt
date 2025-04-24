@@ -215,15 +215,6 @@ CMAKE_TAPI:FILEPATH=CMAKE_TAPI-NOTFOUND
 CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
 
 //Value Computed by CMake
-Project_BINARY_DIR:STATIC=/home/dung-qin/Desktop/ray_tracing/build
-
-//Value Computed by CMake
-Project_IS_TOP_LEVEL:STATIC=ON
-
-//Value Computed by CMake
-Project_SOURCE_DIR:STATIC=/home/dung-qin/Desktop/ray_tracing
-
-//Value Computed by CMake
 raytracing_BINARY_DIR:STATIC=/home/dung-qin/Desktop/ray_tracing/build
 
 //Value Computed by CMake
