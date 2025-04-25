@@ -56,17 +56,17 @@ public:
     }
 
     virtual glm::vec4 Color_handle(glm::vec3 ray, glm::vec3 P, float t, Light_source light_source) const override{
-        glm::vec3 Point_touch = ray + P*t;
+        glm::vec3 Point_touch = P + ray*t;
         glm::vec3 light_vec = glm::normalize(light_source.coord - Point_touch);
         glm::vec3 normal_handled = glm::normalize(Point_touch - center);
         glm::vec3 look_vec = glm::normalize(P - Point_touch);
 
         glm::vec3 ambious = light.Ambious * glm::vec3(color);
 
-        float specular_figures = glm::dot(glm::reflect(-light_vec, normal_handled), look_vec);
+        float specular_figures = glm::dot(glm::normalize(glm::reflect(-light_vec, normal_handled)), look_vec);
         
         float defuse_figures = glm::dot(light_vec, normal_handled);
-        if (defuse_figures < 0){defuse_figures *= -1; specular_figures = 0;}
+        if (defuse_figures < 0){defuse_figures = 0; specular_figures = 0;}
         glm::vec3 defuse = defuse_figures*glm::vec3(color);
 
         if (specular_figures < 0){specular_figures = 0;}
@@ -105,11 +105,11 @@ public:
             *ColorOut = color_combine;
             return true;}
 
-        return false;
+        return false;   
     }
 
     virtual glm::vec4 Color_handle(glm::vec3 ray, glm::vec3 P, float t, Light_source light_source) const override{
-        glm::vec3 Point_touch = ray + P*t;
+        glm::vec3 Point_touch = P + ray*t;
         glm::vec3 light_vec = glm::normalize(light_source.coord - Point_touch);
         glm::vec3 normal_handled = glm::normalize(normal);
         glm::vec3 look_vec = glm::normalize(P - Point_touch);
