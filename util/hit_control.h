@@ -25,6 +25,8 @@ public:
 
     virtual bool Hit_check(glm::vec3 ray, glm::vec3 P, float t_min, float t_max, float* t, glm::vec4* ColorOut, Light_source light_source) const = 0 ;
     virtual glm::vec4 Color_handle(glm::vec3 ray, glm::vec3 P, float t, Light_source light_source) const = 0;
+    virtual glm::vec3 get_normal(glm::vec3 P) const = 0;
+    
     float hit;
 };
 
@@ -32,6 +34,10 @@ class sphere : public hittable {
 public:
     sphere() ;
     sphere(glm::vec3 Center, float radius, glm::vec4 Color, Lighting_parameter Light):center(Center), R(radius), color(Color), light(Light) {};
+
+    virtual glm::vec3 get_normal(glm::vec3 P)const override {
+        return P - center;
+    }
 
     virtual bool Hit_check(glm::vec3 ray, glm::vec3 P, float t_min, float t_max, float* t, glm::vec4* ColorOut, Light_source light_source) const override {
         glm::vec3 cen_vec = center - P;
@@ -43,8 +49,8 @@ public:
             float t1 = (-b - sqrt(denta))/(2*a);
             float t2 = (-b + sqrt(denta))/(2*a);
             
-            if ( t_min <= t1 && t1 <= t_max){*t = t1; *ColorOut = Color_handle(ray, P, t1, light_source); return true;}
-            if ( t_min <= t2 && t2 <= t_max){*t = t2; *ColorOut = Color_handle(ray, P, t2, light_source); return true;}
+            if ( t_min < t1 && t1 < t_max){*t = t1; *ColorOut = Color_handle(ray, P, t1, light_source); return true;}
+            if ( t_min < t2 && t2 < t_max){*t = t2; *ColorOut = Color_handle(ray, P, t2, light_source); return true;}
         }
         return false;
     }
@@ -56,12 +62,13 @@ public:
         glm::vec3 look_vec = glm::normalize(P - Point_touch);
 
         glm::vec3 ambious = light.Ambious * glm::vec3(color);
+
+        float specular_figures = glm::dot(glm::reflect(-light_vec, normal_handled), look_vec);
         
         float defuse_figures = glm::dot(light_vec, normal_handled);
-        if (defuse_figures < 0){defuse_figures = 0;}
+        if (defuse_figures < 0){defuse_figures *= -1; specular_figures = 0;}
         glm::vec3 defuse = defuse_figures*glm::vec3(color);
 
-        float specular_figures = glm::dot(normal_handled, glm::normalize(light_vec + look_vec));
         if (specular_figures < 0){specular_figures = 0;}
         specular_figures = pow(specular_figures, light.shiny);
         glm::vec3 specular = specular_figures * light.Specular * glm::vec3(color);
@@ -81,6 +88,10 @@ class surface : public hittable {
 public:
     surface();
     surface(glm::vec3 Center, glm::vec3 normal_vec, glm::vec4 Color, Lighting_parameter Light) : C(Center), normal(normal_vec), color(Color), light(Light) {};
+
+    virtual glm::vec3 get_normal(glm::vec3 P)const override {
+        return normal;
+    }
 
     virtual bool Hit_check(glm::vec3 ray, glm::vec3 P, float t_min, float t_max, float* t, glm::vec4* ColorOut, Light_source light_source)const override{
         if (glm::dot(ray, normal) == 0){return false;}
@@ -104,12 +115,13 @@ public:
         glm::vec3 look_vec = glm::normalize(P - Point_touch);
 
         glm::vec3 ambious = light.Ambious * glm::vec3(color);
+
+        float specular_figures = glm::dot(glm::reflect(-light_vec, normal_handled), look_vec);
         
         float defuse_figures = glm::dot(light_vec, normal_handled);
-        if (defuse_figures < 0){defuse_figures = 0;}
+        if (defuse_figures < 0){defuse_figures = 0; specular_figures = 0;}
         glm::vec3 defuse = defuse_figures*glm::vec3(color);
-
-        float specular_figures = glm::dot(normal_handled, glm::normalize(light_vec + look_vec));
+        
         if (specular_figures < 0){specular_figures = 0;}
         specular_figures = pow(specular_figures, light.shiny);
         glm::vec3 specular = specular_figures * light.Specular * glm::vec3(color);
