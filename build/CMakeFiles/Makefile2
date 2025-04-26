@@ -54,10 +54,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/dung-qin/Desktop/ray_tracing
+CMAKE_SOURCE_DIR = /home/dung-qin/Desktop/code/ray_tracing
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/dung-qin/Desktop/ray_tracing/build
+CMAKE_BINARY_DIR = /home/dung-qin/Desktop/code/ray_tracing/build
 
 #=============================================================================
 # Directory level rules for the build root directory
@@ -81,14 +81,14 @@ clean: CMakeFiles/raytracing.dir/clean
 CMakeFiles/raytracing.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/raytracing.dir/build.make CMakeFiles/raytracing.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/raytracing.dir/build.make CMakeFiles/raytracing.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/dung-qin/Desktop/ray_tracing/build/CMakeFiles --progress-num=1,2 "Built target raytracing"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/dung-qin/Desktop/code/ray_tracing/build/CMakeFiles --progress-num=1,2 "Built target raytracing"
 .PHONY : CMakeFiles/raytracing.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/raytracing.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/dung-qin/Desktop/ray_tracing/build/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/dung-qin/Desktop/code/ray_tracing/build/CMakeFiles 2
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/raytracing.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/dung-qin/Desktop/ray_tracing/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/dung-qin/Desktop/code/ray_tracing/build/CMakeFiles 0
 .PHONY : CMakeFiles/raytracing.dir/rule
 
 # Convenience name for target.

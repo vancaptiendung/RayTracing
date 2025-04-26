@@ -1,8 +1,8 @@
 [
 {
-  "directory": "/home/dung-qin/Desktop/ray_tracing/build",
-  "command": "/usr/bin/g++  -I/home/dung-qin/Desktop/ray_tracing/./dependences/include/glm -I/home/dung-qin/Desktop/ray_tracing/./util -g -o CMakeFiles/raytracing.dir/main.cpp.o -c /home/dung-qin/Desktop/ray_tracing/main.cpp",
-  "file": "/home/dung-qin/Desktop/ray_tracing/main.cpp",
+  "directory": "/home/dung-qin/Desktop/code/ray_tracing/build",
+  "command": "/usr/bin/g++  -I/home/dung-qin/Desktop/code/ray_tracing/./dependences/include/glm -I/home/dung-qin/Desktop/code/ray_tracing/./util -g -o CMakeFiles/raytracing.dir/main.cpp.o -c /home/dung-qin/Desktop/code/ray_tracing/main.cpp",
+  "file": "/home/dung-qin/Desktop/code/ray_tracing/main.cpp",
   "output": "CMakeFiles/raytracing.dir/main.cpp.o"
 }
 ]
