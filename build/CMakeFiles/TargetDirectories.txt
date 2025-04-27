@@ -1,3 +1,0 @@
-/home/dung-qin/Desktop/code/ray_tracing/build/CMakeFiles/raytracing.dir
-/home/dung-qin/Desktop/code/ray_tracing/build/CMakeFiles/edit_cache.dir
-/home/dung-qin/Desktop/code/ray_tracing/build/CMakeFiles/rebuild_cache.dir
