@@ -5,6 +5,20 @@
 #include <random>
 #include <time.h>
 
+
+glm::vec3 random_vec(){
+    glm::vec3 vec_rand;
+    for (int k = 0; k < 3; k++){
+        
+        float number_random = std::rand()%101;
+        vec_rand[k] = number_random;
+        //std::cout<< number_random;
+    }
+    //std::cout<<std::endl;
+
+    return glm::normalize(vec_rand);
+}
+
 struct Lighting_parameter
 {
     glm::vec3 Ambious;
@@ -28,18 +42,6 @@ public:
     virtual bool Hit_check(glm::vec3 ray, glm::vec3 P, float t_min, float t_max, float* t, glm::vec4* ColorOut, Light_source light_source) const = 0 ;
     virtual glm::vec4 Color_handle(glm::vec3 ray, glm::vec3 P, float t, Light_source light_source) const = 0;
     virtual glm::vec3 get_normal(glm::vec3 P) const = 0;
-    glm::vec3 random_vec(){
-        glm::vec3 vec_rand;
-        srand(time(0));
-        for (int k = 0; k < 3; k++){
-            float number_random = std::rand()%101;
-            vec_rand[k] = number_random;
-            // std::cout<< number_random;
-        }
-        //std::cout<<std::endl;
-
-        return glm::normalize(vec_rand);
-    }
     
     float hit;
 };
@@ -72,7 +74,10 @@ public:
     virtual glm::vec4 Color_handle(glm::vec3 ray, glm::vec3 P, float t, Light_source light_source) const override{
         glm::vec3 Point_touch = P + ray*t;
         glm::vec3 light_vec = glm::normalize(light_source.coord - Point_touch);
-        glm::vec3 normal_handled = glm::normalize(Point_touch - center);
+        glm::vec3 normal = glm::normalize(get_normal(Point_touch));
+        glm::vec3 vec_rand = random_vec();
+        glm::vec3 normal_handled = glm::normalize(float(4)*normal + vec_rand);
+        //std::cout<< normal_handled.x <<std::endl;
         glm::vec3 look_vec = glm::normalize(P - Point_touch);
 
         glm::vec3 ambious = light.Ambious * glm::vec3(color);
@@ -125,7 +130,8 @@ public:
     virtual glm::vec4 Color_handle(glm::vec3 ray, glm::vec3 P, float t, Light_source light_source) const override{
         glm::vec3 Point_touch = P + ray*t;
         glm::vec3 light_vec = glm::normalize(light_source.coord - Point_touch);
-        glm::vec3 normal_handled = glm::normalize(normal);
+        glm::vec3 vec_rand = random_vec();
+        glm::vec3 normal_handled = glm::normalize(float(2)*normal + vec_rand);
         glm::vec3 look_vec = glm::normalize(P - Point_touch);
 
         glm::vec3 ambious = light.Ambious * glm::vec3(color);

@@ -17,6 +17,8 @@ Objects Obj_ctr;
 
 
 glm::vec3 ray_ctr(glm::vec3 ray, glm::vec3 P, float* cout, hittable* Obj_touched){
+    
+    
     glm::vec4 colorOut ;
     glm::vec3 reflect_vec ;
     hittable* Obj_touch;
@@ -36,22 +38,16 @@ glm::vec3 sky(glm::vec2 coord){
 
 int main() {
 
-    hittable* Sphere1 = new sphere(glm::vec3(image_width/2, image_height/2 + 200,100), 80, glm::vec4(1,0,0,0), simple_light);
-    hittable* Sphere2 = new sphere(glm::vec3(image_width/2+100, image_height/2,230), 50, glm::vec4(0.5), simple_light);
-    hittable* Surface1 = new surface(glm::vec3(image_width/2 - 120, image_height/2, 0), glm::vec3(1,0, 0), glm::vec4(0.2), simple_light);
-    hittable* Surface2 = new surface(glm::vec3(image_width/2 + 120, image_height/2, 0), glm::vec3(-1,0, 0), glm::vec4(0.2), simple_light);
-    hittable* Surface3 = new surface(glm::vec3(image_width/2, image_height/2, -20), glm::vec3(0, 0, 1), glm::vec4(0.2), simple_light);
-    hittable* Surface4 = new surface(glm::vec3(image_width/2, image_height/2, 900), glm::vec3(0, 0, -1), glm::vec4(0.5), simple_light);
-
+    hittable* Sphere1 = new sphere(glm::vec3(image_width/2, image_height/2 + 100,100), 100, glm::vec4(1,0,0,0), simple_light);
+    hittable* Surface1 = new surface(glm::vec3(image_width/2, image_height,100), glm::vec3(0, -1, 0), glm::vec4(0.2, 0.2, 0.2, 0), simple_light);
+    
 
     hittable* Sun = new sphere(Light1.coord, 20, glm::vec4(1), simple_light);
 
     Obj_ctr.add_object(Sphere1);
     //Obj_ctr.add_object(Sphere2);
     Obj_ctr.add_object(Surface1);
-    Obj_ctr.add_object(Surface2);
-    Obj_ctr.add_object(Surface3);
-    Obj_ctr.add_object(Surface4);
+    
     
     //Obj_ctr.add_object(Sun);
         
