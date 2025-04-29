@@ -36,8 +36,8 @@ glm::vec3 sky(glm::vec2 coord){
     return glm::vec3(255-int(coord.y*255/1000),255-int(coord.y*255/800),255);
 }
 
-int main() {
-
+int main(){
+                                    
     hittable* Sphere1 = new sphere(glm::vec3(image_width/2, image_height/2 + 100,100), 100, glm::vec4(1,0,0,0), simple_light);
     hittable* Surface1 = new surface(glm::vec3(image_width/2, image_height,100), glm::vec3(0, -1, 0), glm::vec4(0.2, 0.2, 0.2, 0), simple_light);
     
