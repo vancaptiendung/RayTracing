@@ -1,23 +1,10 @@
 #ifndef HIT_CONTROL_HPP
 #define HIT_CONTROL_HPP
 
-#include "glm.hpp"
-#include <random>
-#include <time.h>
+#include "constant.h"
+#include "algorithm.h"
 
 
-glm::vec3 random_vec(){
-    glm::vec3 vec_rand;
-    for (int k = 0; k < 3; k++){
-        
-        float number_random = std::rand()%101;
-        vec_rand[k] = number_random;
-        //std::cout<< number_random;
-    }
-    //std::cout<<std::endl;
-
-    return glm::normalize(vec_rand);
-}
 
 struct Lighting_parameter
 {
@@ -49,7 +36,7 @@ public:
 class sphere : public hittable {
 public:
     sphere() ;
-    sphere(glm::vec3 Center, float radius, glm::vec4 Color, Lighting_parameter Light):center(Center), R(radius), color(Color), light(Light) {};
+    sphere(glm::vec3 Center, float radius, glm::vec4 Color, Lighting_parameter Light, float relative_environment):center(Center), R(radius), color(Color), light(Light), relative(relative_environment) {};
 
     virtual glm::vec3 get_normal(glm::vec3 P)const override {
         return P - center;
@@ -80,17 +67,17 @@ public:
         //std::cout<< normal_handled.x <<std::endl;
         glm::vec3 look_vec = glm::normalize(P - Point_touch);
 
-        glm::vec3 ambious = light.Ambious * glm::vec3(color);
+        glm::vec3 ambious = light.Ambious * light_source.Ambious;
 
         float specular_figures = glm::dot(glm::normalize(glm::reflect(-light_vec, normal_handled)), look_vec);
         
         float defuse_figures = glm::dot(light_vec, normal_handled);
         if (defuse_figures < 0){defuse_figures = 0; specular_figures = 0;}
-        glm::vec3 defuse = defuse_figures*glm::vec3(color);
+        glm::vec3 defuse = defuse_figures*light.Defuse*light_source.Defuse;
 
         if (specular_figures < 0){specular_figures = 0;}
         specular_figures = pow(specular_figures, light.shiny);
-        glm::vec3 specular = specular_figures * light.Specular * glm::vec3(color);
+        glm::vec3 specular = specular_figures * light.Specular * light_source.Specular;
         
         glm::vec3 colorHandled = ambious + defuse + specular;
 
@@ -100,6 +87,7 @@ public:
     glm::vec3 center;
     glm::vec4 color;
     float R;
+    float relative;
     Lighting_parameter light;
 };
 

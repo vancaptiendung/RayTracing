@@ -1,10 +1,9 @@
 #ifndef OBJECT_CONTROL_HPP
 #define OBJECT_CONTROL_HPP
 
-#include "hit_control.h"
+#include "constant.h"
 #include <iostream>
-#include <vector>
-#include <memory>
+#include "hit_control.h"
 
 using std::shared_ptr;
 using std::make_shared;
