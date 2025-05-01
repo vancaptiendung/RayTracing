@@ -33,18 +33,23 @@ public:
     virtual bool Hit_check(glm::vec3 ray, glm::vec3 P, float t_min, float t_max, float* t, glm::vec4* ColorOut, Light_source light_source) const = 0 ;
     virtual glm::vec4 Color_handle(glm::vec3 ray, glm::vec3 P, float t, Light_source light_source) const = 0;
     virtual glm::vec3 get_normal(glm::vec3 P) const = 0;
-    Material light;
+    virtual Material get_material_info() const = 0;
     
     float hit;
+
 };
 
 class sphere : public hittable {
 public:
     sphere() ;
-    sphere(glm::vec3 Center, float radius, Material Light, float relative_environment):center(Center), R(radius), light(Light), relative(relative_environment) {};
+    sphere(glm::vec3 Center, float radius, Material Light, float relative_environment):center(Center), R(radius), light_info(Light), relative(relative_environment) {};
 
     virtual glm::vec3 get_normal(glm::vec3 P)const override {
         return P - center;
+    }
+
+    virtual Material get_material_info() const override{
+        return light_info;
     }
 
     virtual bool Hit_check(glm::vec3 ray, glm::vec3 P, float t_min, float t_max, float* t, glm::vec4* ColorOut, Light_source light_source) const override {
@@ -72,36 +77,40 @@ public:
         //std::cout<< normal_handled.x <<std::endl;
         glm::vec3 look_vec = glm::normalize(P - Point_touch);
 
-        glm::vec3 ambious = light.Ambious * light_source.Ambious;
+        glm::vec3 ambious = light_info.Ambious * light_source.Ambious;
 
         float specular_figures = glm::dot(glm::normalize(glm::reflect(-light_vec, normal_handled)), look_vec);
         
         float defuse_figures = glm::dot(light_vec, normal_handled);
         if (defuse_figures < 0){defuse_figures = 0; specular_figures = 0;}
-        glm::vec3 defuse = defuse_figures*light.Defuse*light_source.Defuse;
+        glm::vec3 defuse = defuse_figures*light_info.Defuse*light_source.Defuse;
 
         if (specular_figures < 0){specular_figures = 0;}
-        specular_figures = pow(specular_figures, light.shiny);
-        glm::vec3 specular = specular_figures * light.Specular * light_source.Specular;
+        specular_figures = pow(specular_figures, light_info.shiny);
+        glm::vec3 specular = specular_figures * light_info.Specular * light_source.Specular;
         
-        glm::vec3 colorHandled = (ambious + defuse + specular) * glm::vec3(light.color);
+        glm::vec3 colorHandled = (ambious + defuse + specular) * glm::vec3(light_info.color);
 
-        return glm::vec4(colorHandled, light.color.a);
+        return glm::vec4(colorHandled, light_info.color.a);
     }
 
     glm::vec3 center;
     float R;
     float relative;
-    Material light;
+    Material light_info;
 };
 
 class surface : public hittable {
 public:
     surface();
-    surface(glm::vec3 Center, glm::vec3 normal_vec, Material Light) : C(Center), normal(normal_vec), light(Light) {};
+    surface(glm::vec3 Center, glm::vec3 normal_vec, Material Light) : C(Center), normal(normal_vec), light_info(Light) {};
 
     virtual glm::vec3 get_normal(glm::vec3 P)const override {
         return normal;
+    }
+
+    virtual Material get_material_info() const override{
+        return light_info;
     }
 
     virtual bool Hit_check(glm::vec3 ray, glm::vec3 P, float t_min, float t_max, float* t, glm::vec4* ColorOut, Light_source light_source)const override{
@@ -126,26 +135,26 @@ public:
         glm::vec3 normal_handled = glm::normalize(float(2)*normal + vec_rand);
         glm::vec3 look_vec = glm::normalize(P - Point_touch);
 
-        glm::vec3 ambious = light.Ambious * light_source.Ambious;
+        glm::vec3 ambious = light_info.Ambious * light_source.Ambious;
 
         float specular_figures = glm::dot(glm::reflect(-light_vec, normal_handled), look_vec);
         
         float defuse_figures = glm::dot(light_vec, normal_handled);
         if (defuse_figures < 0){defuse_figures = 0; specular_figures = 0;}
-        glm::vec3 defuse = defuse_figures*light.Defuse*light_source.Defuse;
+        glm::vec3 defuse = defuse_figures*light_info.Defuse*light_source.Defuse;
         
         if (specular_figures < 0){specular_figures = 0;}
-        specular_figures = pow(specular_figures, light.shiny);
-        glm::vec3 specular = specular_figures * light.Specular * light_source.Specular;
+        specular_figures = pow(specular_figures, light_info.shiny);
+        glm::vec3 specular = specular_figures * light_info.Specular * light_source.Specular;
         
-        glm::vec3 colorHandled = (ambious + defuse + specular) * glm::vec3(light.color);
+        glm::vec3 colorHandled = (ambious + defuse + specular) * glm::vec3(light_info.color);
 
-        return glm::vec4(colorHandled, light.color.a);
+        return glm::vec4(colorHandled, light_info.color.a);
     }
 
     glm::vec3 C, normal;
 
-    Material light;
+    Material light_info;
 };
 
 #endif
