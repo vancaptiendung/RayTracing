@@ -6,10 +6,11 @@ int image_height = 800;
 
 glm::vec3 camera = glm::vec3(image_width/2, image_height/2, 900);
 
-Lighting_parameter simple_light = {glm::vec3(0.01), glm::vec3(0.15), glm::vec3(0.8), 8};
+Material simple_light = {glm::vec3(0.1), glm::vec3(0.5), glm::vec3(0.8), 8,
+                         glm::vec4(0.8,0.2,0.2, 0), 0, 1};
 Light_source Light1 = {
-    glm::vec3(image_width/2,image_height/2,500),
-    glm::vec3(0.1), glm::vec3(0.5), glm::vec3(0.5)
+    glm::vec3(image_width,image_height/2,500),
+    glm::vec3(1), glm::vec3(1), glm::vec3(1)
 };
 
 //obj
@@ -24,10 +25,12 @@ glm::vec3 ray_ctr(glm::vec3 ray, glm::vec3 P, float* cout, hittable* Obj_touched
     hittable* Obj_touch;
 
     float touch = Obj_ctr.ray_touch(ray, P, 0.1, 5000/glm::length(ray), &colorOut, Light1, &reflect_vec, Obj_touch, Obj_touched);
-    if (touch != NULL && *cout < 2){
+    if (touch != NULL && *cout < 4){
         //if (*cout == 1){std::cout<< "hit twice"<<std::endl;}
         * cout += 1;
-        return float(colorOut.a)*(ray_ctr(glm::normalize(reflect_vec), P + ray*touch, cout, Obj_touch)) + (1-colorOut.a)*glm::vec3(colorOut);
+        Material obj_light = Obj_touch->light;
+        std::cout<< obj_light.transparency << std::endl;
+        return colorOut.a*(ray_ctr(glm::normalize(reflect_vec), P + ray*touch, cout, Obj_touch)) + (1 - colorOut.a)*glm::vec3(colorOut);
     }
     return glm::vec3(1);
 }
@@ -38,11 +41,11 @@ glm::vec3 sky(glm::vec2 coord){
 
 int main(){
          
-    hittable* Sphere1 = new sphere(glm::vec3(image_width/2, image_height/2 + 100,100), 100, glm::vec4(1,0,0,0), simple_light, 1.5);
-    hittable* Surface1 = new surface(glm::vec3(image_width/2, image_height,100), glm::vec3(0, -1, 0), glm::vec4(0.2, 0.2, 0.2, 0), simple_light);
+    hittable* Sphere1 = new sphere(glm::vec3(image_width/2, image_height/2 + 100,100), 100, simple_light, 1.5);
+    hittable* Surface1 = new surface(glm::vec3(image_width/2, image_height,100), glm::vec3(0, -1, 0), simple_light);
     
 
-    hittable* Sun = new sphere(Light1.coord, 20, glm::vec4(1), simple_light, 1.5);
+    hittable* Sun = new sphere(Light1.coord, 20, simple_light, 1.5);
 
     Obj_ctr.add_object(Sphere1);
     //Obj_ctr.add_object(Sphere2);
@@ -68,10 +71,10 @@ int main(){
             glm::vec3 colorOut = ray_ctr(ray, camera, &cout, Sun);
             glm::vec3 colorHandled = glm::vec3(int(255 * colorOut.x),int(255 * colorOut.y),int(255 * colorOut.z));
 
-            if (cout != 0){out_pixel(colorHandled);}
+            // if (cout != 0){out_pixel(colorHandled);}
 
             
-            else{out_pixel(sky(glm::vec2(i,j)));}
+            // else{out_pixel(sky(glm::vec2(i,j)));}
         }
     }
 }
