@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/dung-qin/Desktop/code/ray_tracing/random_light_ray/main.cpp" "CMakeFiles/raytracing.dir/main.cpp.o" "gcc" "CMakeFiles/raytracing.dir/main.cpp.o.d"
+  "/home/vancaptiendung/Documents/Code/RayTracing/random_light_ray/main.cpp" "CMakeFiles/raytracing.dir/main.cpp.o" "gcc" "CMakeFiles/raytracing.dir/main.cpp.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

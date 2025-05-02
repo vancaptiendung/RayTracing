@@ -55,7 +55,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/home/dung-qin/Desktop/code/ray_tracing/build"
+			"value" : "/home/vancaptiendung/Documents/Code/RayTracing/build"
 		},
 		{
 			"name" : "CMAKE_CACHE_MAJOR_VERSION",
@@ -158,8 +158,8 @@
 					"value" : "CXX compiler"
 				}
 			],
-			"type" : "STRING",
-			"value" : "/usr/bin/g++"
+			"type" : "FILEPATH",
+			"value" : "/usr/bin/c++"
 		},
 		{
 			"name" : "CMAKE_CXX_COMPILER_AR",
@@ -223,7 +223,7 @@
 				}
 			],
 			"type" : "STRING",
-			"value" : "-g"
+			"value" : ""
 		},
 		{
 			"name" : "CMAKE_CXX_FLAGS_MINSIZEREL",
@@ -239,7 +239,7 @@
 				}
 			],
 			"type" : "STRING",
-			"value" : "-Os -DNDEBUG"
+			"value" : ""
 		},
 		{
 			"name" : "CMAKE_CXX_FLAGS_RELEASE",
@@ -255,7 +255,7 @@
 				}
 			],
 			"type" : "STRING",
-			"value" : "-O3 -DNDEBUG"
+			"value" : ""
 		},
 		{
 			"name" : "CMAKE_CXX_FLAGS_RELWITHDEBINFO",
@@ -271,7 +271,7 @@
 				}
 			],
 			"type" : "STRING",
-			"value" : "-O2 -g -DNDEBUG"
+			"value" : ""
 		},
 		{
 			"name" : "CMAKE_C_COMPILER",
@@ -283,11 +283,11 @@
 				},
 				{
 					"name" : "HELPSTRING",
-					"value" : "C compiler"
+					"value" : "No help, variable specified on the command line."
 				}
 			],
-			"type" : "STRING",
-			"value" : "/usr/bin/gcc"
+			"type" : "FILEPATH",
+			"value" : "/usr/bin/c89-gcc"
 		},
 		{
 			"name" : "CMAKE_C_COMPILER_AR",
@@ -303,7 +303,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "/usr/bin/gcc-ar-13"
+			"value" : "CMAKE_C_COMPILER_AR-NOTFOUND"
 		},
 		{
 			"name" : "CMAKE_C_COMPILER_RANLIB",
@@ -319,7 +319,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "/usr/bin/gcc-ranlib-13"
+			"value" : "CMAKE_C_COMPILER_RANLIB-NOTFOUND"
 		},
 		{
 			"name" : "CMAKE_C_FLAGS",
@@ -543,7 +543,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/home/dung-qin/Desktop/code/ray_tracing/build/CMakeFiles/pkgRedirects"
+			"value" : "/home/vancaptiendung/Documents/Code/RayTracing/build/CMakeFiles/pkgRedirects"
 		},
 		{
 			"name" : "CMAKE_GENERATOR",
@@ -603,7 +603,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/home/dung-qin/Desktop/code/ray_tracing/random_light_ray"
+			"value" : "/home/vancaptiendung/Documents/Code/RayTracing/random_light_ray"
 		},
 		{
 			"name" : "CMAKE_INSTALL_PREFIX",
@@ -1167,7 +1167,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/home/dung-qin/Desktop/code/ray_tracing/build"
+			"value" : "/home/vancaptiendung/Documents/Code/RayTracing/build"
 		},
 		{
 			"name" : "raytracing_IS_TOP_LEVEL",
@@ -1191,7 +1191,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/home/dung-qin/Desktop/code/ray_tracing/random_light_ray"
+			"value" : "/home/vancaptiendung/Documents/Code/RayTracing/random_light_ray"
 		}
 	],
 	"kind" : "cache",

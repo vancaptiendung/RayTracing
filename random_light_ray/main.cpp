@@ -2,7 +2,7 @@
 #include "object_control.hpp"
 
 int image_width = 1000;
-int image_height = 800;
+int image_height = 800; 
 
 glm::vec3 camera = glm::vec3(image_width/2, image_height/2, 900);
 

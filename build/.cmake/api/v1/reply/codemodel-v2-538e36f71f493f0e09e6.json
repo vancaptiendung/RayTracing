@@ -39,7 +39,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "raytracing::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-raytracing-Debug-e4535bb800ea1150babe.json",
+					"jsonFile" : "target-raytracing-Debug-4898147532aa9d4fbccf.json",
 					"name" : "raytracing",
 					"projectIndex" : 0
 				}
@@ -49,8 +49,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "/home/dung-qin/Desktop/code/ray_tracing/build",
-		"source" : "/home/dung-qin/Desktop/code/ray_tracing/random_light_ray"
+		"build" : "/home/vancaptiendung/Documents/Code/RayTracing/build",
+		"source" : "/home/vancaptiendung/Documents/Code/RayTracing/random_light_ray"
 	},
 	"version" : 
 	{

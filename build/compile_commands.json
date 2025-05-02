@@ -1,8 +1,8 @@
 [
 {
-  "directory": "/home/dung-qin/Desktop/code/ray_tracing/build",
-  "command": "/usr/bin/g++  -I/home/dung-qin/Desktop/code/ray_tracing/random_light_ray/../dependences/include/glm -I/home/dung-qin/Desktop/code/ray_tracing/random_light_ray/./util -g -O2 -DNDEBUG -Wall -Wextra -o CMakeFiles/raytracing.dir/main.cpp.o -c /home/dung-qin/Desktop/code/ray_tracing/random_light_ray/main.cpp",
-  "file": "/home/dung-qin/Desktop/code/ray_tracing/random_light_ray/main.cpp",
+  "directory": "/home/vancaptiendung/Documents/Code/RayTracing/build",
+  "command": "/usr/bin/c++  -I/home/vancaptiendung/Documents/Code/RayTracing/random_light_ray/../dependences/include/glm -I/home/vancaptiendung/Documents/Code/RayTracing/random_light_ray/./util  -O2 -DNDEBUG -Wall -Wextra -o CMakeFiles/raytracing.dir/main.cpp.o -c /home/vancaptiendung/Documents/Code/RayTracing/random_light_ray/main.cpp",
+  "file": "/home/vancaptiendung/Documents/Code/RayTracing/random_light_ray/main.cpp",
   "output": "CMakeFiles/raytracing.dir/main.cpp.o"
 }
 ]

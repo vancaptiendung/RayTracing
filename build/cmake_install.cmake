@@ -1,4 +1,4 @@
-# Install script for directory: /home/dung-qin/Desktop/code/ray_tracing/random_light_ray
+# Install script for directory: /home/vancaptiendung/Documents/Code/RayTracing/random_light_ray
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -50,5 +50,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/dung-qin/Desktop/code/ray_tracing/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/vancaptiendung/Documents/Code/RayTracing/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

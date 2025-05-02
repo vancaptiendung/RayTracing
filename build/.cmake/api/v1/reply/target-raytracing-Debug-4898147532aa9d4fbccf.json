@@ -42,9 +42,6 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "-g"
-				},
-				{
 					"fragment" : "-O2 -DNDEBUG -Wall -Wextra"
 				}
 			],
@@ -52,11 +49,11 @@
 			[
 				{
 					"backtrace" : 2,
-					"path" : "/home/dung-qin/Desktop/code/ray_tracing/random_light_ray/../dependences/include/glm"
+					"path" : "/home/vancaptiendung/Documents/Code/RayTracing/random_light_ray/../dependences/include/glm"
 				},
 				{
 					"backtrace" : 2,
-					"path" : "/home/dung-qin/Desktop/code/ray_tracing/random_light_ray/./util"
+					"path" : "/home/vancaptiendung/Documents/Code/RayTracing/random_light_ray/./util"
 				}
 			],
 			"language" : "CXX",
@@ -71,10 +68,6 @@
 	{
 		"commandFragments" : 
 		[
-			{
-				"fragment" : "-g",
-				"role" : "flags"
-			},
 			{
 				"fragment" : "",
 				"role" : "flags"
